@@ -3,8 +3,9 @@ package com.yrlalal.ordermanagementservice.v1.controller;
 import com.yrlalal.ordermanagementservice.v1.entity.Order;
 import com.yrlalal.ordermanagementservice.v1.entity.OrderStatus;
 import com.yrlalal.ordermanagementservice.v1.service.OrderService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/api/v1/orders")
+@Validated
 public class OrderController {
     private final OrderService orderService;
 
@@ -29,7 +31,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public Order createOrder(@RequestBody Order order) {
+    public Order createOrder(@Valid @RequestBody Order order) {
         return orderService.createOrder(order);
     }
 

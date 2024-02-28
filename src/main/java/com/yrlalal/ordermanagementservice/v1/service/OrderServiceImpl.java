@@ -1,11 +1,9 @@
 package com.yrlalal.ordermanagementservice.v1.service;
 
-import com.yrlalal.ordermanagementservice.exception.BadRequestException;
 import com.yrlalal.ordermanagementservice.exception.OrderNotFoundException;
 import com.yrlalal.ordermanagementservice.v1.entity.Order;
 import com.yrlalal.ordermanagementservice.v1.entity.OrderStatus;
 import com.yrlalal.ordermanagementservice.v1.repository.OrderRepository;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,14 +25,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order createOrder(Order order) {
-        validateOrder(order);
         initializeOrder(order);
         return orderRepository.save(order);
     }
 
     @Override
     public Order updateOrder(String orderId, Order order) {
-        validateOrder(order);
         order.setOrderId(orderId);
         Order dbOrder = getOrder(order.getOrderId());
         order.setOrderItems(dbOrder.getOrderItems());
@@ -57,16 +53,6 @@ public class OrderServiceImpl implements OrderService {
         // TODO: Add logic to validate order status flow
 
         return orderRepository.save(order);
-    }
-
-    private void validateOrder(Order order) {
-        if (order == null) {
-            throw new BadRequestException("order data in request body is required.");
-        }
-
-        if (Strings.isBlank(order.getCustomerId())) {
-            throw new BadRequestException("customerId field is required.");
-        }
     }
 
     private static void initializeOrder(Order order) {

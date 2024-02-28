@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +23,7 @@ public class Order {
     private String orderId;
 
     @Column(name = "customer_id")
+    @NotBlank(message = "customerId is required")
     private String customerId;
 
     @Column(name = "created")
