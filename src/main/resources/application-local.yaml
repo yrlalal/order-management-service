@@ -1,16 +1,16 @@
 spring:
-  jpa:
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-        show_sql: true
   datasource:
     url: 'jdbc:postgresql://localhost:5432/orderDB'
     username: postgres
     password: postgres
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
+#  jpa:
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        show_sql: true
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        SQL: DEBUG
