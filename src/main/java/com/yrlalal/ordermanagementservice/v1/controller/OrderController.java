@@ -24,18 +24,18 @@ public class OrderController {
         this.orderService = orderService;
     }
     @GetMapping("{orderId}")
-    public ResponseEntity<Order> getOrder(@PathVariable("orderId") String orderId) {
-        return ResponseEntity.ok(orderService.getOrder(orderId));
+    public Order getOrder(@PathVariable("orderId") String orderId) {
+        return orderService.getOrder(orderId);
     }
 
     @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
-        return ResponseEntity.ok(orderService.createOrder(order));
+    public Order createOrder(@RequestBody Order order) {
+        return orderService.createOrder(order);
     }
 
     @PutMapping("{orderId}")
-    public ResponseEntity<Order> updateOrder(@PathVariable("orderId") String orderId, @RequestBody Order order) {
-        return ResponseEntity.ok(orderService.updateOrder(orderId, order));
+    public Order updateOrder(@PathVariable("orderId") String orderId, @RequestBody Order order) {
+        return orderService.updateOrder(orderId, order);
     }
 
     @DeleteMapping("{orderId}")
@@ -44,8 +44,8 @@ public class OrderController {
     }
 
     @PostMapping("{orderId}/status/{orderStatus}")
-    public ResponseEntity<Order> updateOrderStatus(@PathVariable("orderId") String orderId,
+    public Order updateOrderStatus(@PathVariable("orderId") String orderId,
                                    @PathVariable("orderStatus") OrderStatus orderStatus) {
-        return ResponseEntity.ok(orderService.updateOrderStatus(orderId, orderStatus));
+        return orderService.updateOrderStatus(orderId, orderStatus);
     }
 }

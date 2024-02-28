@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class GlobalExceptionHandler {
-    Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+public class GlobalExceptionControllerAdvice {
+    Logger logger = LoggerFactory.getLogger(GlobalExceptionControllerAdvice.class);
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ErrorResponse<String>> handleException(BadRequestException ex) {
         return getErrorResponseEntity(ex, HttpStatus.BAD_REQUEST);
