@@ -1,15 +1,15 @@
 package com.yrlalal.ordermanagementservice.v1.service;
 
-import com.yrlalal.ordermanagementservice.v1.model.Order;
-import com.yrlalal.ordermanagementservice.v1.model.OrderStatus;
+import com.yrlalal.ordermanagementservice.v1.entity.Order;
+import com.yrlalal.ordermanagementservice.v1.entity.OrderStatus;
 
 public interface OrderService {
-    Order getOrder(Integer orderId);
+    Order getOrder(String orderId);
     Order createOrder(Order order);
 
-    Order updateOrder(Integer orderId, Order order);
+    Order updateOrder(String orderId, Order order);
 
-    void deleteOrder(Integer orderId);
+    void deleteOrder(String orderId);
 
-    Order updateOrderStatus(Integer orderId, OrderStatus orderStatus);
+    Order updateOrderStatus(String orderId, OrderStatus orderStatus);
 }

@@ -2,14 +2,15 @@ package com.yrlalal.ordermanagementservice.v1.service;
 
 import com.yrlalal.ordermanagementservice.exception.BadRequestException;
 import com.yrlalal.ordermanagementservice.exception.OrderNotFoundException;
-import com.yrlalal.ordermanagementservice.v1.model.Order;
-import com.yrlalal.ordermanagementservice.v1.model.OrderStatus;
+import com.yrlalal.ordermanagementservice.v1.entity.Order;
+import com.yrlalal.ordermanagementservice.v1.entity.OrderStatus;
 import com.yrlalal.ordermanagementservice.v1.repository.OrderRepository;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
+import java.util.UUID;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -20,7 +21,7 @@ public class OrderServiceImpl implements OrderService {
         this.orderRepository = orderRepository;
     }
     @Override
-    public Order getOrder(Integer orderId) {
+    public Order getOrder(String orderId) {
         return orderRepository.findById(orderId).orElseThrow(() -> new OrderNotFoundException("Order with id " + orderId + " is not found"));
     }
 
@@ -32,7 +33,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order updateOrder(Integer orderId, Order order) {
+    public Order updateOrder(String orderId, Order order) {
         validateOrder(order);
         order.setOrderId(orderId);
         Order dbOrder = getOrder(order.getOrderId());
@@ -44,12 +45,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void deleteOrder(Integer orderId) {
+    public void deleteOrder(String orderId) {
         orderRepository.deleteById(orderId);
     }
 
     @Override
-    public Order updateOrderStatus(Integer orderId, OrderStatus orderStatus) {
+    public Order updateOrderStatus(String orderId, OrderStatus orderStatus) {
         Order order = getOrder(orderId);
         order.setOrderStatus(orderStatus);
 
@@ -69,7 +70,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private static void initializeOrder(Order order) {
-        order.setOrderId(null);
+        order.setOrderId(UUID.randomUUID().toString());
         order.setOrderItems(null);
         order.setCreated(Calendar.getInstance().getTime());
         order.setOrderStatus(OrderStatus.NEW);

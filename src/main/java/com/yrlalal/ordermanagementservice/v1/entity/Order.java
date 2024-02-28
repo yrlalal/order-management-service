@@ -1,4 +1,4 @@
-package com.yrlalal.ordermanagementservice.v1.model;
+package com.yrlalal.ordermanagementservice.v1.entity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -17,20 +17,19 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "dborder")
+@Table(name = "db_order")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "orderId")
-    private Integer orderId;
+    @Column(name = "order_id")
+    private String orderId;
 
-    @Column(name = "customerId")
+    @Column(name = "customer_id")
     private String customerId;
 
     @Column(name = "created")
     private Date created;
 
-    @Column(name = "orderStatus")
+    @Column(name = "order_status")
     private OrderStatus orderStatus;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)

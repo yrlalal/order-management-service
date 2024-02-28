@@ -1,8 +1,8 @@
 spring:
-  jpa:
-    hibernate:
-#      TODO: Use change set management tool like liquibase or flyway
-      ddl-auto: update
+  flyway:
+    locations: classpath:db/migration
+    enabled: true
+
 logging:
   level:
     org:

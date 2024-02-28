@@ -1,7 +1,7 @@
 package com.yrlalal.ordermanagementservice.v1.controller;
 
-import com.yrlalal.ordermanagementservice.v1.model.Order;
-import com.yrlalal.ordermanagementservice.v1.model.OrderStatus;
+import com.yrlalal.ordermanagementservice.v1.entity.Order;
+import com.yrlalal.ordermanagementservice.v1.entity.OrderStatus;
 import com.yrlalal.ordermanagementservice.v1.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,7 +23,7 @@ public class OrderController {
         this.orderService = orderService;
     }
     @GetMapping("{orderId}")
-    public Order getOrder(@PathVariable("orderId") Integer orderId) {
+    public Order getOrder(@PathVariable("orderId") String orderId) {
         return orderService.getOrder(orderId);
     }
 
@@ -33,17 +33,17 @@ public class OrderController {
     }
 
     @PutMapping("{orderId}")
-    public Order updateOrder(@PathVariable("orderId") Integer orderId, @RequestBody Order order) {
+    public Order updateOrder(@PathVariable("orderId") String orderId, @RequestBody Order order) {
         return orderService.updateOrder(orderId, order);
     }
 
     @DeleteMapping("{orderId}")
-    public void deleteOrder(@PathVariable("orderId") Integer orderId) {
+    public void deleteOrder(@PathVariable("orderId") String orderId) {
         orderService.deleteOrder(orderId);
     }
 
     @PostMapping("{orderId}/status/{orderStatus}")
-    public Order updateOrderStatus(@PathVariable("orderId") Integer orderId,
+    public Order updateOrderStatus(@PathVariable("orderId") String orderId,
                                    @PathVariable("orderStatus") OrderStatus orderStatus) {
         return orderService.updateOrderStatus(orderId, orderStatus);
     }

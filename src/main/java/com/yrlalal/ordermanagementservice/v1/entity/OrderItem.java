@@ -1,4 +1,4 @@
-package com.yrlalal.ordermanagementservice.v1.model;
+package com.yrlalal.ordermanagementservice.v1.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -17,25 +18,26 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "orderItem")
+@IdClass(OrderItemPK.class)
+@Table(name = "order_item")
 public class OrderItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "orderItemId")
+    @Column(name = "order_item_id")
     private Integer orderItemId;
 
     @ManyToOne
-    @JoinColumn(name = "orderId")
+    @JoinColumn(name = "order_id")
+    @Id
     @JsonIgnore
     private Order order;
 
-    @Column(name = "productId")
+    @Column(name = "product_id")
     private String productId;
 
     @Column(name = "price")
     private Double price;
 
-    @Column(name = "orderItemStatus")
+    @Column(name = "order_item_status")
     private OrderItemStatus orderItemStatus;
 
     @Column(name = "created")
