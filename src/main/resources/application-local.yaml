@@ -1,0 +1,19 @@
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+    hibernate:
+#      TODO: Use change set management tool like liquibase or flyway
+      ddl-auto: update
+  datasource:
+    url: 'jdbc:postgresql://localhost:5432/orderDB'
+    username: postgres
+    password: postgres
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG

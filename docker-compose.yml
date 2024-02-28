@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   postgres:
-    image: postgres
+    image: postgres:16.2
     ports:
       - 5432:5432
     volumes:
@@ -11,3 +11,14 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_DB=orderDB
+  api:
+    depends_on:
+      - postgres
+    build:
+      context: .
+    ports:
+      - 8080:8080
+    environment:
+      - spring.datasource.url=jdbc:postgresql://postgres:5432/orderDB
+      - spring.datasource.username=postgres
+      - spring.datasource.password=postgres
