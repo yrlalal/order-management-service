@@ -4,6 +4,7 @@ import com.yrlalal.ordermanagementservice.v1.entity.Order;
 import com.yrlalal.ordermanagementservice.v1.entity.OrderStatus;
 import com.yrlalal.ordermanagementservice.v1.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,18 +24,18 @@ public class OrderController {
         this.orderService = orderService;
     }
     @GetMapping("{orderId}")
-    public Order getOrder(@PathVariable("orderId") String orderId) {
-        return orderService.getOrder(orderId);
+    public ResponseEntity<Order> getOrder(@PathVariable("orderId") String orderId) {
+        return ResponseEntity.ok(orderService.getOrder(orderId));
     }
 
     @PostMapping
-    public Order createOrder(@RequestBody Order order) {
-        return orderService.createOrder(order);
+    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+        return ResponseEntity.ok(orderService.createOrder(order));
     }
 
     @PutMapping("{orderId}")
-    public Order updateOrder(@PathVariable("orderId") String orderId, @RequestBody Order order) {
-        return orderService.updateOrder(orderId, order);
+    public ResponseEntity<Order> updateOrder(@PathVariable("orderId") String orderId, @RequestBody Order order) {
+        return ResponseEntity.ok(orderService.updateOrder(orderId, order));
     }
 
     @DeleteMapping("{orderId}")
@@ -43,8 +44,8 @@ public class OrderController {
     }
 
     @PostMapping("{orderId}/status/{orderStatus}")
-    public Order updateOrderStatus(@PathVariable("orderId") String orderId,
+    public ResponseEntity<Order> updateOrderStatus(@PathVariable("orderId") String orderId,
                                    @PathVariable("orderStatus") OrderStatus orderStatus) {
-        return orderService.updateOrderStatus(orderId, orderStatus);
+        return ResponseEntity.ok(orderService.updateOrderStatus(orderId, orderStatus));
     }
 }
