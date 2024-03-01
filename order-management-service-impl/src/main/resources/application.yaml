@@ -1,0 +1,9 @@
+spring:
+  flyway:
+    locations: classpath:db/migration
+    enabled: true
+
+logging:
+  level:
+    org:
+      springframework: DEBUG
