@@ -12,6 +12,9 @@ from NEW -> CHECKOUT -> ACTIVE -> COMPLETED. Or the order can be CANCELLED prior
 * Java IDE (example: IntelliJ Idea, Eclipse etc, but basic editor like vi or notepad would also do)
 * Eclipse Temurin JDK v21
 * Maven
+* PostgreSQL Server
+
+Note that some of these are optional with docker.
 
 ## Local Build and deployment
 
