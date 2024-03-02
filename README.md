@@ -40,7 +40,7 @@ Swagger UI can be accessed locally with the following url:
 http://localhost:8080/swagger-ui/index.html
 
 ## Continuous Integration Pipeline
-Continuous Integration pipelines have been set up using github actions. 
+Continuous Integration pipelines have been set up using [github actions](https://github.com/yrlalal/order-management-service/actions). 
 It will be run on:
 * a pull request to master branch
 * merging a pull request to master
