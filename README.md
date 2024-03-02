@@ -39,6 +39,9 @@ To run locally, you can take one of these options:
 Swagger UI can be accessed locally with the following url:
 http://localhost:8080/swagger-ui/index.html
 
+## Code Coverage
+JaCoCo code coverage tool has been set up to ensure 80% code coverage is met, but it is currently disabled.
+
 ## Continuous Integration Pipeline
 Continuous Integration pipelines have been set up using [github actions](https://github.com/yrlalal/order-management-service/actions). 
 It will be run on:
@@ -49,8 +52,6 @@ The pipeline ensures that the application builds successfully and all unit tests
 Additionally, on master branch pipeline the docker image is pushed to 
 [docker hub](https://hub.docker.com/repository/docker/yrlalal/order-management-service/general) with two tags: 
 `latest` and github sha of the most recent master branch commit.
-
-JaCoCo code coverage tool has been set up to ensure 80% code coverage is met, but it is currently disabled.
 
 ## Future Goals
 * Create Helm charts to deploy application to a k8s instance hosted locally or in cloud
