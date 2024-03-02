@@ -5,5 +5,5 @@ RUN mvn clean verify
 
 FROM eclipse-temurin:21.0.2_13-jre-ubi9-minimal
 WORKDIR /usr/app
-COPY --from=builder /usr/app/target/order-management-service*.jar ./app.jar
+COPY --from=builder /usr/app/order-management-service-impl/target/order-management-service*.jar ./app.jar
 CMD ["java", "-jar", "app.jar"]
