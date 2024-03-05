@@ -7,7 +7,7 @@ import com.yrlalal.ordermanagementservice.api.v1.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Service
@@ -58,7 +58,7 @@ public class OrderServiceImpl implements OrderService {
     private static void initializeOrder(Order order) {
         order.setOrderId(UUID.randomUUID().toString());
         order.setOrderItems(null);
-        order.setCreated(Calendar.getInstance().getTime());
+        order.setCreated(ZonedDateTime.now());
         order.setOrderStatus(OrderStatus.NEW);
     }
 }

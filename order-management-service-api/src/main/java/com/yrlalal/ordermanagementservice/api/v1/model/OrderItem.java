@@ -1,6 +1,7 @@
 package com.yrlalal.ordermanagementservice.api.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -11,7 +12,8 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 
 @Getter
 @Setter
@@ -33,13 +35,14 @@ public class OrderItem {
     private String productId;
 
     @Column(name = "price")
-    private Double price;
+    private BigDecimal price;
 
     @Column(name = "order_item_status")
     private OrderItemStatus orderItemStatus;
 
     @Column(name = "created")
-    private Date created;
+    @Schema(description = "Represents order item creation time. It follows ISO-8601 format of yyyy-mm-ddT hh:mm:ss+|– hh:mm", example = "2024-03-04T14:09:50.2371549-08:00")
+    private ZonedDateTime created;
 
     @Column(name = "quantity")
     private Integer quantity;
