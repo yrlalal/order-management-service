@@ -32,30 +32,19 @@ jobs:
         with:
           registry-type: public
 
-      - name: Build, tag, and push docker image to Amazon ECR Public
+      - name: Build docker image
         env:
           REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
           REGISTRY_ALIAS: ${{ env.aws_registry_alias }}
           REPOSITORY: ${{ github.event.repository.name }}
           IMAGE_TAG: ${{ github.sha }}
-        run: |
-          docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
-          docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
+        run: docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
 
-#      - name: Log in to Docker Hub
-#        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
-#        with:
-#          username: ${{ secrets.DOCKER_USERNAME }}
-#          password: ${{ secrets.DOCKER_PASSWORD }}
-#        if: github.event_name != 'pull_request'
-#
-#      - name: Build and push Docker image
-#        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
-#        with:
-#          context: .
-#          file: ./Dockerfile
-#          push: true
-#          tags: |
-#            yrlalal/${{github.event.repository.name}}:latest
-#            yrlalal/${{github.event.repository.name}}:${{github.sha}}
-#        if: github.event_name != 'pull_request'
+      - name: Push docker image to Amazon ECR Public
+        env:
+          REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
+          REGISTRY_ALIAS: ${{ env.aws_registry_alias }}
+          REPOSITORY: ${{ github.event.repository.name }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
+        if: github.event_name != 'pull_request'
