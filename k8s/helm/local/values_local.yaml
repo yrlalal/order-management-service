@@ -1,0 +1,13 @@
+# TODO: Do not hard-code credentials
+auth:
+  postgresPassword: "postgres"
+  username: "testuser"
+  password: "testpass"
+  database: "orderDB"
+primary:
+  service:
+#    Set service type to NodePort, so the DB can be accessed externally.
+    type: "NodePort"
+    nodePorts:
+#      TODO: Research how to better handle port number assignments automatically
+      postgresql: 32322
