@@ -13,6 +13,9 @@ from NEW -> CHECKOUT -> ACTIVE -> COMPLETED. Or the order can be CANCELLED prior
 * Eclipse Temurin JDK v21
 * Maven
 * PostgreSQL Server
+* Docker Desktop/Minikube/k8s
+* Helm
+* jq
 
 Note that some of these are optional with docker.
 
@@ -38,6 +41,8 @@ To run locally, you can take one of these options:
     java -jar .\order-management-service-impl\target\order-management-service-impl-0.0.1-SNAPSHOT.jar --spring.profiles.active=local
     ```
 * Run Postgres (locally or docker-compose as listed above) and run microservice in a Java IDE
+* Run k8s/helm/local/setup.sh script to run on k8s locally.
+  * Run teardown.sh to delete k8s resources after local validation.
 
 Swagger UI can be accessed locally with the following url:
 http://localhost:8080/swagger-ui/index.html

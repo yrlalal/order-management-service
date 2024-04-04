@@ -112,30 +112,9 @@ tolerations: []
 
 affinity: {}
 
-
-postgres:
-  enabled: true
-
-postgresql:
-  image:
-    debug: true
-  auth:
-    postgresPassword: "postgres"
-    username: "testuser"
-    password: "testpass"
-    database: "orderDB"
-  primary:
-    service:
-      type: "NodePort"
-      nodePorts:
-        postgresql: 32322
-    livenessProbe:
-      initialDelaySeconds: 60
-    readinessProbe:
-      initialDelaySeconds: 60
-
-
+# TODO: Do not hard-code credentials.
+#  Instead, populate from secrets manager.
 envMap:
-  SPRING_DATASOURCE_URL: "jdbc:postgresql://192.168.65.3:32322/orderDB"
+  SPRING_DATASOURCE_URL: "jdbc:postgresql://kubernetes.docker.internal:32322/orderDB"
   SPRING_DATASOURCE_USERNAME: "testuser"
   SPRING_DATASOURCE_PASSWORD: "testpass"
